@@ -46,7 +46,7 @@ from datasets import load_dataset, Dataset
 
 class Config:
     DATASET_DIR = "./learnability_gap_data/final"
-    OUTPUT_DIR = "./training_outputs"
+    OUTPUT_DIR = "./output"
     RESULTS_DIR = "./results"
     PLOTS_DIR = "./plots"
 
@@ -57,7 +57,7 @@ class Config:
         },
         "Qwen2.5-Coder-1.5B": {
             "model_id": "Qwen/Qwen2.5-Coder-1.5B-Instruct",
-            "use_lora": False,
+            "use_lora": True,
         },
         "Qwen2.5-Coder-3B": {
             "model_id": "Qwen/Qwen2.5-Coder-3B-Instruct",
