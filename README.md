@@ -113,8 +113,8 @@ CUDA = 13.0
 GPU: 32GB VRAM (RTX PRO 4500 Blackwell)
 Driver version: 580.126.20
 Container:
-Image: runpod/pytorch:1.0.2-cu1281-torch280-ubuntu1404
-Template: runpod-torch-v280
+    Image.................. runpod/pytorch:1.0.2-cu1281-torch280-ubuntu1404
+    Template............... runpod-torch-v280
 ```
 
 ### Installation
