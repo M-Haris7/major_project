@@ -81,7 +81,7 @@ class Config:
         "learning_rate": 1e-5,
         "per_device_train_batch_size": 2,
         "gradient_accumulation_steps": 4,
-        "max_seq_length": 4096,
+        "max_length": 4096,
         "lr_scheduler_type": "cosine",
         "warmup_ratio": 0.03,
         "bf16": True,
@@ -93,7 +93,7 @@ class Config:
         "learning_rate": 1e-4,
         "per_device_train_batch_size": 1,
         "gradient_accumulation_steps": 8,
-        "max_seq_length": 4096,
+        "max_length": 4096,
         "lr_scheduler_type": "cosine",
         "warmup_ratio": 0.03,
         "bf16": True,
@@ -216,7 +216,7 @@ def train_one(student_name, dataset_config):
         learning_rate=hp["learning_rate"],
         per_device_train_batch_size=hp["per_device_train_batch_size"],
         gradient_accumulation_steps=hp["gradient_accumulation_steps"],
-        max_seq_length=hp["max_seq_length"], lr_scheduler_type=hp["lr_scheduler_type"],
+        max_length=hp["max_length"], lr_scheduler_type=hp["lr_scheduler_type"],
         warmup_ratio=hp["warmup_ratio"], bf16=hp["bf16"],
         gradient_checkpointing=hp["gradient_checkpointing"],
         logging_steps=5, save_strategy="epoch", save_total_limit=1,
@@ -308,7 +308,7 @@ def train_curriculum(student_name, curriculum_key):
             num_train_epochs=stage["epochs"], learning_rate=hp["learning_rate"],
             per_device_train_batch_size=hp["per_device_train_batch_size"],
             gradient_accumulation_steps=hp["gradient_accumulation_steps"],
-            max_seq_length=hp["max_seq_length"], lr_scheduler_type=hp["lr_scheduler_type"],
+            max_length=hp["max_length"], lr_scheduler_type=hp["lr_scheduler_type"],
             warmup_ratio=hp["warmup_ratio"] if si == 0 else 0.0,
             bf16=hp["bf16"], gradient_checkpointing=hp["gradient_checkpointing"],
             logging_steps=5, save_strategy="no", report_to="none",
@@ -676,7 +676,7 @@ if __name__ == "__main__":
     print("  LEARNABILITY GAP — TRAIN & EVAL")
     if torch.cuda.is_available():
         print(f"  GPU: {torch.cuda.get_device_name(0)}")
-        print(f"  VRAM: {torch.cuda.get_device_properties(0).total_mem/1e9:.1f} GB")
+        print(f"  VRAM: {torch.cuda.get_device_properties(0).total_memory/1e9:.1f} GB")
     print(f"  Students: {', '.join(Config.STUDENTS.keys())}")
     print("="*60)
 
